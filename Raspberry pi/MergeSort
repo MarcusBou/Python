@@ -1,0 +1,47 @@
+import random
+import math
+import time
+
+def FillArrayWithRandom(length):
+    arr = [0] * length
+    i = 0
+    while i < length:
+        rand = math.floor(random.random() * 1000000);
+        arr[i] = rand
+        i += 1
+    return arr
+
+def mergesort(arr):
+    if(len(arr) > 1):
+        mid = len(arr) // 2
+        L = arr[:mid]
+        R = arr[mid:]
+        mergesort(L)
+        mergesort(R)
+
+        i = j = k = 0    
+        while i < len(L) and j < len(R):
+            if L[i] <= R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+        
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+        
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+arrlength = 20000
+arr = FillArrayWithRandom(arrlength)
+start_t = time.time()
+mergesort(arr)
+stop_t = time.time()
+print(stop_t - start_t)

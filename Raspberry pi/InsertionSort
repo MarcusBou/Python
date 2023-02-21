@@ -1,0 +1,29 @@
+import random
+import math
+import time
+
+def FillArrayWithRandom(length):
+    arr = [0] * length
+    i = 0
+    while i < length:
+        rand = math.floor(random.random() * 100000);
+        arr[i] = rand
+        i += 1
+    return arr
+
+def InsertionSort(arr):
+    for i in range(1, len(arr)):
+        temp = arr[i]
+
+        j = i-1
+        while j >= 0 and temp < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = temp
+
+arrlength = 20000
+arr = FillArrayWithRandom(arrlength)
+start_t = time.time()
+InsertionSort(arr)
+stop_t = time.time()
+print(stop_t - start_t)
